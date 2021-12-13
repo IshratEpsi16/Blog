@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+
+{% block title_block%}User Profile{%endblock%}
+{% block body_block %}
+
+<h3 class='text-success fs-2'>Welcome {{user.username}}</h3>
+<br>
+{% if user.user_profile%}
+<!--After Login-->
+
+
+<div class="card" style="width: 18rem;">
+    <img src="/media/{{user.user_profile.profile_pic}}" class="card-img-top" alt="...">
+    <a href="{% url 'App_Login:change_pro_pic'%}" class='btn btn-success'>Change Profile Picture</a>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><p class='text-black fs-6'>Name : {{user.username}}</p></li>
+      
+    </ul>
+   
+  </div>
+</div>
+
+{%else%}
+<!--Just Login-->
+<div class='one'>
+<img src="/media/profile_pics/male-avatar-profile-picture-vector-10211761.jpg" class='rounded-circle' width="100px">
+</div>
+<div class='two'>
+<a href="{% url 'App_Login:add_pro_pic'%}" class='btn btn-info'>Upload Profile Picture</a>
+</div>
+
+
+
+{%endif%}
+{%endblock%}

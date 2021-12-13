@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% load custom_filters %}
+{% block title_block%}Home{%endblock%}
+{% block body_block %}
+
+{% for blog in blogs %}
+<h5>@{{blog.author}}</h5>
+<i><p>{{blog.publish_date}}</p></i>
+
+
+<div class='row'>
+    <div class='col-sm-4'>
+        <img src="/media/{{blog.blog_image}}" alt="" width="250px" >
+    </div>
+    
+    <div class='col-sm-8'>
+        <p class='text-dark fs-2'>{{blog.blog_title}}</p>
+        <p>{{blog.blog_content |range_fiter |linebreaks}}</p><button type="button" class="btn btn-secondary"><a href="{% url 'blog_app:blog_details' pk=blog.pk%}" class='text-white' style="text-decoration: none;">Read More</a></button>
+        <br> <br>
+        <h6>{{blog.liked_blog.count}} Likes |{{blog.blog_comment.count}} Comments </h6> 
+    </div>
+</div>
+<hr>
+{%endfor%}
+{%endblock%}
